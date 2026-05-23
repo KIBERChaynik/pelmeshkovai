@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пельмешковая — Кафе | Калининград</title>
+    <style>
+        @import url('https://cdn.fontsource.org/fontsource/css/source-sans-3.css');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF8F0;
+            --warm-brown: #8B6914;
+            --deep-brown: #4A3520;
+            --accent-red: #C0392B;
+            --accent-gold: #D4A017;
+            --light-gold: #F5E6C8;
+            --text-dark: #2C1810;
+            --text-mid: #5C4033;
+            --text-light: #8B7355;
+            --white: #FFFFFF;
+            --shadow: rgba(74, 53, 32, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 248, 240, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 105, 20, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--deep-brown);
+        }
+
+        .nav-logo-icon {
+            font-size: 28px;
+        }
+
+        .nav-logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-mid);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-brown);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--accent-red);
+            font-weight: 700;
+            font-size: 15px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            border: 2px solid rgba(192, 57, 43, 0.2);
+            transition: all 0.3s;
+        }
+
+        .nav-phone:hover {
+            background: var(--accent-red);
+            color: white;
+            border-color: var(--accent-red);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2.5px;
+            background: var(--deep-brown);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #2C1810 0%, #4A3520 50%, #5C4033 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17a6c720b-daac-4d17-aad5-0f5fe5460aab.png') center/cover;
+            opacity: 0.25;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.85), rgba(74, 53, 32, 0.7));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            color: var(--cream);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 160, 23, 0.2);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent-gold), #F5D87A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 248, 240, 0.75);
+            margin-bottom: 36px;
+            max-width: 480px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--accent-red), #E74C3C);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(192, 57, 43, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(192, 57, 43, 0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-card {
+            background: rgba(255, 248, 240, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 248, 240, 0.12);
+            border-radius: 24px;
+            padding: 36px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-card-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .hero-stat {
+            text-align: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+        }
+
+        .hero-stat-num {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        .hero-stat-label {
+            font-size: 11px;
+            color: rgba(255, 248, 240, 0.6);
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        /* SECTION STYLES */
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 900;
+            color: var(--deep-brown);
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ABOUT */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .about-img-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--accent-gold);
+            color: var(--deep-brown);
+            padding: 20px 28px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 28px;
+            box-shadow: 0 8px 30px rgba(212, 160, 23, 0.3);
+        }
+
+        .about-img-badge small {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .about-text h3 {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--deep-brown);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-mid);
+            margin-bottom: 24px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--cream);
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-mid);
+        }
+
+        .about-feature .icon {
+            font-size: 20px;
+        }
+
+        /* MENU */
+        .menu {
+            background: linear-gradient(180deg, var(--cream) 0%, #F5E6C8 100%);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(74, 53, 32, 0.2);
+        }
+
+        .menu-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .menu-card:hover .menu-card-img {
+            transform: scale(1.05);
+        }
+
+        .menu-card-img-wrap {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent-red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .menu-card-body {
+            padding: 24px;
+        }
+
+        .menu-card-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--deep-brown);
+            margin-bottom: 8px;
+        }
+
+        .menu-card-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .menu-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-card-price {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--accent-red);
+        }
+
+        .menu-card-price small {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .menu-card-sizes {
+            display: flex;
+            gap: 6px;
+        }
+
+        .size-tag {
+            padding: 4px 10px;
+            background: var(--cream);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--warm-brown);
+        }
+
+        /* GALLERY */
+        .gallery {
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(44, 24, 16, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* REVIEWS */
+        .reviews {
+            background: linear-gradient(135deg, var(--deep-brown), #5C4033);
+            color: var(--cream);
+        }
+
+        .reviews .section-tag {
+            color: var(--accent-gold);
+        }
+
+        .reviews .section-title {
+            color: var(--cream);
+        }
+
+        .reviews .section-desc {
+            color: rgba(255, 248, 240, 0.6);
+        }
+
+        .reviews-rating-big {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .rating-num {
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .rating-stars {
+            font-size: 28px;
+            margin: 8px 0;
+            letter-spacing: 4px;
+        }
+
+        .rating-count {
+            font-size: 14px;
+            color: rgba(255, 248, 240, 0.5);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .review-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .review-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .review-name {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .review-level {
+            font-size: 12px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: rgba(255, 248, 240, 0.4);
+        }
+
+        .review-stars {
+            color: var(--accent-gold);
+            font-size: 14px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 248, 240, 0.75);
+        }
+
+        /* INFO SECTION */
+        .info {
+            background: var(--cream);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .info-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--deep-brown);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(139, 105, 20, 0.08);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row-icon {
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .info-row-label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .info-row-value {
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .info-row-value a {
+            color: var(--accent-red);
+            text-decoration: none;
+        }
+
+        .info-row-value a:hover {
+            text-decoration: underline;
+        }
+
+        .schedule-grid {
+            display: grid;
+            gap: 8px;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .schedule-row:hover {
+            background: var(--cream);
+        }
+
+        .schedule-row.today {
+            background: rgba(212, 160, 23, 0.12);
+            font-weight: 700;
+        }
+
+        .schedule-row .day {
+            color: var(--text-mid);
+            font-weight: 600;
+        }
+
+        .schedule-row .time {
+            color: var(--text-light);
+        }
+
+        .open-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .open-badge.open {
+            background: rgba(16, 185, 129, 0.12);
+            color: #10b981;
+        }
+
+        .open-badge.closed {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+        }
+
+        .open-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* MAP */
+        .map-section {
+            padding: 0;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: #e0d5c5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--accent-red), #E74C3C);
+            text-align: center;
+            padding: 80px 24px;
+        }
+
+        .cta h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .cta p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: white;
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 17px;
+            border-radius: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--deep-brown);
+            color: rgba(255, 248, 240, 0.6);
+            padding: 60px 24px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255, 248, 240, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 0;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--cream);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE MENU */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 24, 16, 0.97);
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 12px;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            color: var(--cream);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-phone {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 100px;
+            }
+
+            .hero-card {
+                max-width: 500px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 36px;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="nav-logo-icon">🥟</span>
+                <span class="nav-logo-text">Пельмешковая</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#gallery">Фото</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#info">Контакты</a></li>
+            </ul>
+            <a href="tel:+79216171185" class="nav-phone">📞 Позвонить</a>
+            <div class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">✕</button>
+        <a href="#about" onclick="closeMobile()">О нас</a>
+        <a href="#menu" onclick="closeMobile()">Меню</a>
+        <a href="#gallery" onclick="closeMobile()">Фото</a>
+        <a href="#reviews" onclick="closeMobile()">Отзывы</a>
+        <a href="#info" onclick="closeMobile()">Контакты</a>
+        <a href="tel:+79216171185" onclick="closeMobile()" style="color: #E74C3C;">📞 +7 (921) 617-11-85</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">⭐ Рейтинг 5.0 — 617 оценок</div>
+                <h1 class="hero-title">Домашние<br><span>пельмени</span><br>с душой</h1>
+                <p class="hero-subtitle">Настоящие пельмени и вареники ручной лепки в уютном кафе в самом сердце Калининграда. Разные начинки, разные цвета — порадуйте себя и детей!</p>
+                <div class="hero-actions">
+                    <a href="tel:+79216171185" class="btn-primary">📞 Позвонить</a>
+                    <a href="#menu" class="btn-secondary">️ Смотреть меню</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/11d31d820-b0cd-42dd-bf9c-b801007bf739.png" alt="Пельмени со сметаной" class="hero-card-img">
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">617</div>
+                        <div class="hero-stat-label">отзывов</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">5.0</div>
+                        <div class="hero-stat-label">рейтинг</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">11ч</div>
+                        <div class="hero-stat-label">работаем</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-inner">
+            <div class="about-grid">
+                <div class="about-img-wrap animate-on-scroll">
+                    <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17a6c720b-daac-4d17-aad5-0f5fe5460aab.png" alt="Интерьер кафе" class="about-img">
+                    <div class="about-img-badge">
+                        5.0<small>средний рейтинг</small>
+                    </div>
+                </div>
+                <div class="about-text animate-on-scroll">
+                    <div class="section-tag">О нас</div>
+                    <h3>Вкусно, сытно,<br>не дорого</h3>
+                    <p>«Пельмешковая» — это маленькое уютное кафе с 5–6 столиками, где каждый заказ готовится с душой. Мы предлагаем пельмени и вареники ручной работы в разных цветах, которые порадуют не только взрослых, но и детей.</p>
+                    <p>Порции разбиты на 12, 18 и 24 штуки — так что на каждого едока своя тарелка. Заказ отдаётся за 5–10 минут. Быстро, вкусно и с любовью!</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <span class="icon"></span>
+                            <span>Ручная лепка</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="icon">⏱️</span>
+                            <span>Готовность 5-10 мин</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="icon">🎨</span>
+                            <span>Разные цвета теста</span>
+                        </div>
+                        <div class="about-feature">
+                            <span class="icon">‍👩‍👧‍👦</span>
+                            <span>Для всей семьи</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Меню</div>
+                <h2 class="section-title">Наши блюда</h2>
+                <p class="section-desc">Пельмени, вареники и бульоны — всё готовится из свежих продуктов, вручную</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img-wrap">
+                        <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/11d31d820-b0cd-42dd-bf9c-b801007bf739.png" alt="Пельмени со свининой" class="menu-card-img">
+                        <div class="menu-card-badge">Хит</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-title">Пельмени со свининой</div>
+                        <div class="menu-card-desc">Нежные пельмени с начинкой из свинины, подаются с бульоном, сметаной или хреном</div>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">от 150₽ <small>/ 12 шт</small></div>
+                            <div class="menu-card-sizes">
+                                <span class="size-tag">12 шт</span>
+                                <span class="size-tag">18 шт</span>
+                                <span class="size-tag">24 шт</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img-wrap">
+                        <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17a6c720b-daac-4d17-aad5-0f5fe5460aab.png" alt="Пельмени свино-говяжьи" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-title">Пельмени свино-говяжьи</div>
+                        <div class="menu-card-desc">Классическое сочетание свинины и говядины — сытные и ароматные, тают во рту</div>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">от 180₽ <small>/ 12 шт</small></div>
+                            <div class="menu-card-sizes">
+                                <span class="size-tag">12 шт</span>
+                                <span class="size-tag">18 шт</span>
+                                <span class="size-tag">24 шт</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img-wrap">
+                        <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17d1c769e-9c4c-4eac-b61d-bfabddfc4cd6.png" alt="Вареники с вишней" class="menu-card-img">
+                        <div class="menu-card-badge">Десерт</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-title">Вареники с вишней</div>
+                        <div class="menu-card-desc">Сладкие вареники с сочной вишней — идеальный десерт после сытных пельменей</div>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">от 140₽ <small>/ 12 шт</small></div>
+                            <div class="menu-card-sizes">
+                                <span class="size-tag">12 шт</span>
+                                <span class="size-tag">18 шт</span>
+                                <span class="size-tag">24 шт</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img-wrap">
+                        <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17a6c720b-daac-4d17-aad5-0f5fe5460aab.png" alt="Картофельные вареники" class="menu-card-img">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-title">Вареники картофельные</div>
+                        <div class="menu-card-desc">С картофельной начинкой и грибами — классика русской кухни в каждом кусочке</div>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">от 130₽ <small>/ 12 шт</small></div>
+                            <div class="menu-card-sizes">
+                                <span class="size-tag">12 шт</span>
+                                <span class="size-tag">18 шт</span>
+                                <span class="size-tag">24 шт</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img-wrap">
+                        <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/11d31d820-b0cd-42dd-bf9c-b801007bf739.png" alt="Куриный бульон" class="menu-card-img">
+                        <div class="menu-card-badge">Согревающий</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-title">Куриный бульон</div>
+                        <div class="menu-card-desc">Наваристый домашний бульон — прекрасное дополнение к пельменям или отдельно</div>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">от 80₽</div>
+                            <div class="menu-card-sizes">
+                                <span class="size-tag">250 мл</span>
+                                <span class="size-tag">400 мл</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-card animate-on-scroll">
+                    <div class="menu-card-img-wrap">
+                        <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17d1c769e-9c4c-4eac-b61d-bfabddfc4cd6.png" alt="Морс" class="menu-card-img">
+                        <div class="menu-card-badge">Рекомендуем</div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-title">Офигенный морс </div>
+                        <div class="menu-card-desc">Домашний ягодный морс — по отзывам гостей, это must-have при каждом визите!</div>
+                        <div class="menu-card-footer">
+                            <div class="menu-card-price">от 70₽</div>
+                            <div class="menu-card-sizes">
+                                <span class="size-tag">300 мл</span>
+                                <span class="size-tag">500 мл</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Фото</div>
+                <h2 class="section-title">Наше кафе</h2>
+                <p class="section-desc">Уютная атмосфера и аппетитные блюда</p>
+            </div>
+            <div class="gallery-grid animate-on-scroll">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17a6c720b-daac-4d17-aad5-0f5fe5460aab.png" alt="Интерьер">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/11d31d820-b0cd-42dd-bf9c-b801007bf739.png" alt="Пельмени">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17d1c769e-9c4c-4eac-b61d-bfabddfc4cd6.png" alt="Вареники с вишней">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+    </div>
+
+    <!-- REVIEWS -->
+    <section class="reviews" id="reviews">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Отзывы</div>
+                <h2 class="section-title">Что говорят наши гости</h2>
+                <p class="section-desc">617 оценок со средним баллом 5.0</p>
+            </div>
+            <div class="reviews-rating-big animate-on-scroll">
+                <div class="rating-num">5.0</div>
+                <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+                <div class="rating-count">на основе 617 оценок</div>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #6366f1, #a78bfa);">Е</div>
+                        <div>
+                            <div class="review-name">Гость</div>
+                            <div class="review-date">Недавний отзыв</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="review-text">Вкусно, сытно, не дорого. Заведение маленькое 5-6 столов. Заказы отдают 5-10 мин. Пельмени и вареники отличные, сделаны с душой. Отличное решение разбить порции на 12 шт, 18 шт и 24 шт. Все изделия исполняются в разных цветах, что порадует ваш глаз и привлечёт детей. Взяла 12 пельмешек со свининой, бульон куриный + сметану и хрен, а на десерт 12 вареников с вишней — и это был восторг!</div>
+                </div>
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #10b981, #84cc16);">Е</div>
+                        <div>
+                            <div class="review-name">Evgenij V</div>
+                            <div class="review-level">Знаток города 4 уровня</div>
+                            <div class="review-date">23 мая</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="review-text">Спасибо! Очень вкусно!</div>
+                </div>
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar" style="background: linear-gradient(135deg, #ec4899, #f472b6);">К</div>
+                        <div>
+                            <div class="review-name">katrinazz</div>
+                            <div class="review-level">Дегустатор 5 уровня</div>
+                            <div class="review-date">7 мая</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <div class="review-text">Зашли сюда в обед, начитавшись хороших отзывов. Взяли куриный бульон, свино-говяжьи пельмени и картофельные вареники с доп. грибами. Восторги разделяем — очень вкусно! Кто за «поесть», а не для пафоса — заходите, не пожалеете. Приветливый хозяин и женщины-повара, чисто, интерьер простой, но уютный. И ещё советую офигенный морс)))</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="info" id="info">
+        <div class="section-inner">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">Информация</div>
+                <h2 class="section-title">Как нас найти</h2>
+                <p class="section-desc">Ждём вас в гости каждый день!</p>
+            </div>
+            <div class="info-grid">
+                <div class="info-card animate-on-scroll">
+                    <h3> Контакты</h3>
+                    <div class="info-row">
+                        <div class="info-row-icon">📍</div>
+                        <div>
+                            <div class="info-row-label">Адрес</div>
+                            <div class="info-row-value">ул. Новый Вал, 29, Калининград</div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-row-icon">📞</div>
+                        <div>
+                            <div class="info-row-label">Телефон</div>
+                            <div class="info-row-value"><a href="tel:+79216171185">+7 (921) 617-11-85</a></div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-row-icon">🕐</div>
+                        <div>
+                            <div class="info-row-label">Сейчас</div>
+                            <div class="info-row-value" id="openStatus">
+                                <span class="open-badge open"><span class="dot"></span> Открыто</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-row-icon">⏱️</div>
+                        <div>
+                            <div class="info-row-label">Время заказа</div>
+                            <div class="info-row-value">5–10 минут</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <h3>📅 График работы</h3>
+                    <div class="schedule-grid" id="scheduleGrid">
+                        <div class="schedule-row" data-day="1">
+                            <span class="day">Понедельник</span>
+                            <span class="time">09:00 – 20:00</span>
+                        </div>
+                        <div class="schedule-row" data-day="2">
+                            <span class="day">Вторник</span>
+                            <span class="time">09:00 – 20:00</span>
+                        </div>
+                        <div class="schedule-row" data-day="3">
+                            <span class="day">Среда</span>
+                            <span class="time">09:00 – 20:00</span>
+                        </div>
+                        <div class="schedule-row" data-day="4">
+                            <span class="day">Четверг</span>
+                            <span class="time">09:00 – 20:00</span>
+                        </div>
+                        <div class="schedule-row" data-day="5">
+                            <span class="day">Пятница</span>
+                            <span class="time">09:00 – 20:00</span>
+                        </div>
+                        <div class="schedule-row" data-day="6">
+                            <span class="day">Суббота</span>
+                            <span class="time">11:00 – 20:00</span>
+                        </div>
+                        <div class="schedule-row" data-day="0">
+                            <span class="day">Воскресенье</span>
+                            <span class="time">11:00 – 20:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="map-section">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2360.5!2d20.505!3d54.71!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z0YPQuy4g0J3QvtCy0L4g0LjRhtCw0Y8g0L_RgC4sIDI5!5e0!3m2!1sru!2sru!4v1" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Проголодались? </h2>
+        <p>Позвоните нам или загляните в гости — домашние пельмени уже ждут вас!</p>
+        <a href="tel:+79216171185" class="cta-btn">📞 +7 (921) 617-11-85</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>🥟 Пельмешковая</h3>
+                    <p>Домашние пельмени и вареники ручной лепки в Калининграде. Вкусно, сытно, не дорого.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <a href="#home">Главная</a>
+                    <a href="#about">О нас</a>
+                    <a href="#menu">Меню</a>
+                    <a href="#gallery">Фото</a>
+                    <a href="#reviews">Отзывы</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <a href="tel:+79216171185">+7 (921) 617-11-85</a>
+                    <a href="#info">ул. Новый Вал, 29</a>
+                    <a href="#info">Калининград</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Пельмешковая. Все права защищены.</span>
+                <span>Сделано с ❤️ в Калининграде</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        mobileClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        function closeMobile() {
+            mobileMenu.classList.remove('active');
+        }
+
+        // Scroll animations
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        animateElements.forEach(el => observer.observe(el));
+
+        // Schedule highlight
+        const now = new Date();
+        const today = now.getDay();
+        const currentHour = now.getHours();
+        const currentMin = now.getMinutes();
+        const currentTime = currentHour + currentMin / 60;
+
+        const scheduleRows = document.querySelectorAll('.schedule-row');
+        scheduleRows.forEach(row => {
+            if (parseInt(row.dataset.day) === today) {
+                row.classList.add('today');
+                const timeText = row.querySelector('.time').textContent;
+                const [openH, closeH] = timeText.match(/\d+/g).map(Number);
+                if (currentTime >= openH && currentTime < closeH) {
+                    document.getElementById('openStatus').innerHTML =
+                        '<span class="open-badge open"><span class="dot"></span> Открыто до ' + closeH + ':00</span>';
+                } else {
+                    document.getElementById('openStatus').innerHTML =
+                        '<span class="open-badge closed"><span class="dot"></span> Закрыто</span>';
+                }
+            }
+        });
+
+        // Lightbox
+        const galleryImages = [
+            'https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17a6c720b-daac-4d17-aad5-0f5fe5460aab.png',
+            'https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/11d31d820-b0cd-42dd-bf9c-b801007bf739.png',
+            'https://image.qwenlm.ai/public_source/94d62c8a-fa9b-4cd7-826c-f0467e239d17/17d1c769e-9c4c-4eac-b61d-bfabddfc4cd6.png'
+        ];
+        let currentImg = 0;
+
+        function openLightbox(index) {
+            currentImg = index;
+            document.getElementById('lightboxImg').src = galleryImages[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(dir) {
+            currentImg = (currentImg + dir + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightboxImg').src = galleryImages[currentImg];
+        }
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+    </script>
+</body>
+</html>
+
